@@ -1,16 +1,16 @@
-Módulo 9
+MÃ³dulo 9
 
--- Para trabalhabar com variáveis é necessário declarar e usar o @ para nomear, coloque nome sugestivos e fáceis de usar, escolha um tipo de dado na declaração
+-- Para trabalhabar com variÃ¡veis Ã© necessÃ¡rio declarar e usar o @ para nomear, coloque nome sugestivos e fÃ¡ceis de usar, escolha um tipo de dado na declaraÃ§Ã£o
 
-declare @movimento date -- aqui declarei uma variável tipo date
+declare @movimento date -- aqui declarei uma variÃ¡vel tipo date
 
-set @movimento = '01/01/2021'-- setou a variável para 01/01/2021
+set @movimento = '01/01/2021'-- setou a variÃ¡vel para 01/01/2021
 
-select @movimento -- rodou o comando e viu o valor da variável
+select @movimento -- rodou o comando e viu o valor da variÃ¡vel
 
-set @movimento = cast ( getdate () as date) -- aqui mudou o valor da variável
+set @movimento = cast ( getdate () as date) -- aqui mudou o valor da variÃ¡vel
 
-select @movimento -- rodou o comando e viu a alteração do valor da variável
+select @movimento -- rodou o comando e viu a alteraÃ§Ã£o do valor da variÃ¡vel
 
 select titulo_receber
 	 , titulo
@@ -20,7 +20,7 @@ select titulo_receber
  where a.movimento >= '01/01/2019'
    and a.movimento <= '31/12/2019'
 
--- A orientação é que as variáveis fiquem no início do código
+-- A orientaÃ§Ã£o Ã© que as variÃ¡veis fiquem no inÃ­cio do cÃ³digo
 
 declare @movimento_ini  date
 declare @movimento_fim  date
@@ -36,7 +36,7 @@ select titulo_receber
  where a.movimento >= @movimento_ini
    and a.movimento <= @movimento_fim
 
--- Se precisar mudar os valores na váriável é só mudar os valores que foram setados
+-- Se precisar mudar os valores na vÃ¡riÃ¡vel Ã© sÃ³ mudar os valores que foram setados
 
 declare @movimento_ini  date
 declare @movimento_fim  date
@@ -52,7 +52,7 @@ select titulo_receber
  where a.movimento >= @movimento_ini
    and a.movimento <= @movimento_fim
 
--- As variáveis também pode ser colunas nas tabelas
+-- As variÃ¡veis tambÃ©m pode ser colunas nas tabelas
 
 declare @movimento_ini  date
 declare @movimento_fim  date
@@ -92,10 +92,10 @@ select  @movimento_ini as movimento_ini
  where a.movimento >= @movimento_ini
    and a.movimento <= @movimento_fim
 
--- Também é possível declarar variável colocando os valores na frente do tipo de dados conforme abaixo:
+-- TambÃ©m Ã© possÃ­vel declarar variÃ¡vel colocando os valores na frente do tipo de dados conforme abaixo:
 
-declare @movimento_ini           date           ='01/01/2020' -- forma resumida de declarar variável
-      , @movimento_fim           date           ='31/12/2020' -- também é possível colocar , no lugar do 'declare' sem precisar ficar repetindo a palavra, isso mostra que você conhece da linguagem
+declare @movimento_ini           date           ='01/01/2020' -- forma resumida de declarar variÃ¡vel
+      , @movimento_fim           date           ='31/12/2020' -- tambÃ©m Ã© possÃ­vel colocar , no lugar do 'declare' sem precisar ficar repetindo a palavra, isso mostra que vocÃª conhece da linguagem
       , @percentual_acrescimento numeric (15,2) = 15.00
 
 select  @movimento_ini as movimento_ini
@@ -111,7 +111,7 @@ select  @movimento_ini as movimento_ini
    and a.movimento <= @movimento_fim
 ------------
 
--- 1° Forma de declarar variável
+-- 1Â° Forma de declarar variÃ¡vel
 
 declare @data_atual_1 date
 
@@ -119,21 +119,21 @@ set @data_atual_1 = '02/11/2021'
 
 select @data_atual_1
 
--- 2° Forma de declarar variável -- retorna data e hora atual
+-- 2Â° Forma de declarar variÃ¡vel -- retorna data e hora atual
 
 declare @data_atual_02 date = getdate ()
 
 select @data_atual_02, getdate ()
 
--- 3° Forma de declarar variável -- baseada no resultado de um comando select
+-- 3Â° Forma de declarar variÃ¡vel -- baseada no resultado de um comando select
 
--- 1°
+-- 1Â°
 
 select *
  from vendas_analiticas a
  join enderecos         b on a.cliente = b.entidade
 
--- 2°
+-- 2Â°
 
 select b.estado
      , sum (a.venda_liquida) as valor_vendido
@@ -142,7 +142,7 @@ select b.estado
  group by b.estado 
  order by sum (a.venda_liquida) asc
 
--- 3°
+-- 3Â°
 
 select top 1 b.estado
      , sum (a.venda_liquida) as valor_vendido
@@ -151,14 +151,14 @@ select top 1 b.estado
  group by b.estado 
  order by sum (a.venda_liquida) asc
 
--- 4° Agora o estado será salvo em uma variável
+-- 4Â° Agora o estado serÃ¡ salvo em uma variÃ¡vel
 
 declare @uf_menor_venda char (2)
 
-set @uf_menor_venda =   -- ao definir uma informação váriavel dinâmica é preciso colocar as condições em () para conseguir usar o comando set e passar a instrução select para a variável
+set @uf_menor_venda =   -- ao definir uma informaÃ§Ã£o vÃ¡riavel dinÃ¢mica Ã© preciso colocar as condiÃ§Ãµes em () para conseguir usar o comando set e passar a instruÃ§Ã£o select para a variÃ¡vel
 
 (
-select top 1 b.estado -- ao rodar toda essa instrução dará o erro 'Somente uma expressão pode ser especificada na lista de seleção', isso se dá porque é preciso tirar um campo do select e deixar apenas um 
+select top 1 b.estado -- ao rodar toda essa instruÃ§Ã£o darÃ¡ o erro 'Somente uma expressÃ£o pode ser especificada na lista de seleÃ§Ã£o', isso se dÃ¡ porque Ã© preciso tirar um campo do select e deixar apenas um 
      , sum (a.venda_liquida) as valor_vendido
  from vendas_analiticas a
  join enderecos         b on a.cliente = b.entidade
@@ -166,14 +166,14 @@ select top 1 b.estado -- ao rodar toda essa instrução dará o erro 'Somente uma e
  order by sum (a.venda_liquida) asc
  )
 
--- 5° 
+-- 5Â° 
 
 declare @uf_menor_venda char (2)
 
 set @uf_menor_venda =   
 
 (
-select top 1 b.estado  -- agora dará sucesso no comando, o erro não aparecerá mais
+select top 1 b.estado  -- agora darÃ¡ sucesso no comando, o erro nÃ£o aparecerÃ¡ mais
  from vendas_analiticas a
  join enderecos         b on a.cliente = b.entidade
  group by b.estado 
@@ -182,7 +182,7 @@ select top 1 b.estado  -- agora dará sucesso no comando, o erro não aparecerá ma
 
  select @uf_menor_venda
 
--- 6° -- retornará os 7 clientes que são do MS
+-- 6Â° -- retornarÃ¡ os 7 clientes que sÃ£o do MS
 
 declare @uf_menor_venda char (2)
 
@@ -202,16 +202,16 @@ select top 1 b.estado
  join enderecos b on a.entidade = b.entidade
  where b.estado = @uf_menor_venda
 
--- 4° Forma de declarar variável -- baseado no resultado de um comando select, posso atribuir a váriavel direto no select
--- Para mim essa é a forma mais prática e direta, usaria essa sem dúvida
+-- 4Â° Forma de declarar variÃ¡vel -- baseado no resultado de um comando select, posso atribuir a vÃ¡riavel direto no select
+-- Para mim essa Ã© a forma mais prÃ¡tica e direta, usaria essa sem dÃºvida
 
--- 1°
+-- 1Â°
 
 declare @uf_maior_venda    char (2)
 declare @valor_total_venda numeric (15,2)
 
 select top 1 
-           @uf_maior_venda    = b.estado  -- sempre que for atribuir mais de uma váriavel na query, jamais pode gerar mais de uma linha de resultado, ou seja, atribui apenas um valor e não um conjunto de valores
+           @uf_maior_venda    = b.estado  -- sempre que for atribuir mais de uma vÃ¡riavel na query, jamais pode gerar mais de uma linha de resultado, ou seja, atribui apenas um valor e nÃ£o um conjunto de valores
 		  ,@valor_total_venda = sum (a.venda_liquida)
  from vendas_analiticas a
  join enderecos         b on a.cliente = b.entidade
@@ -220,13 +220,13 @@ select top 1
 
  select @uf_maior_venda, @valor_total_venda
 
--- 2° Consulta retorna todos os clientes que são do Ceará
+-- 2Â° Consulta retorna todos os clientes que sÃ£o do CearÃ¡
 
 declare @uf_maior_venda    char (2)
 declare @valor_total_venda numeric (15,2)
 
 select top 1 
-           @uf_maior_venda    = b.estado  -- sempre que for atribuir mais de uma váriavel na query, jamais pode gerar mais de uma linha de resultado, ou seja, atribui apenas um valor e não um conjunto de valores
+           @uf_maior_venda    = b.estado  -- sempre que for atribuir mais de uma vÃ¡riavel na query, jamais pode gerar mais de uma linha de resultado, ou seja, atribui apenas um valor e nÃ£o um conjunto de valores
 		  ,@valor_total_venda = sum (a.venda_liquida)
  from vendas_analiticas a
  join enderecos         b on a.cliente = b.entidade
@@ -240,11 +240,11 @@ select top 1
  where b.estado = @uf_maior_venda
 
  ----------------
--- Mais um tipo de variável tipo tabela para armazenar informações em uma variável e não em subqueries e ou tabelas temporária
--- Só funciona no contexto de execução, não fica armazenada dentro do banco de dados ex: tempodb
--- Cuidado ao usar variável do tipo table, pois o computador tira da sua memória coisas importante para colocar a sua variável do tipo table lá 
+-- Mais um tipo de variÃ¡vel tipo tabela para armazenar informaÃ§Ãµes em uma variÃ¡vel e nÃ£o em subqueries e ou tabelas temporÃ¡ria
+-- SÃ³ funciona no contexto de execuÃ§Ã£o, nÃ£o fica armazenada dentro do banco de dados ex: tempodb
+-- Cuidado ao usar variÃ¡vel do tipo table, pois o computador tira da sua memÃ³ria coisas importante para colocar a sua variÃ¡vel do tipo table lÃ¡ 
  
--- 1°
+-- 1Â°
 
  declare @clientes_ativos table
  ( -- especificar cada campo e quais tipos de dados cada campo correspondente
@@ -252,10 +252,10 @@ select top 1
  ,nome_cliente varchar(20)
  ,total_vendido money
  )
- select *  -- se rodar apenas essa consulta, não irá trazer informações, pois está fora de contexto usá-la sozinha, só rodar quando for dentro do contexto de declarar e dar um select na variável
+ select *  -- se rodar apenas essa consulta, nÃ£o irÃ¡ trazer informaÃ§Ãµes, pois estÃ¡ fora de contexto usÃ¡-la sozinha, sÃ³ rodar quando for dentro do contexto de declarar e dar um select na variÃ¡vel
   from @clientes_ativos
 
--- 2°
+-- 2Â°
 
 declare @clientes_ativos table
  ( -- especificar cada campo e quais tipos de dados cada campo correspondente
@@ -264,7 +264,7 @@ declare @clientes_ativos table
  ,total_vendido money
  )
 
-insert into @clientes_ativos (cod_cliente, nome_cliente, total_vendido) -- o comando insert você passa o nome dos campos que deseja inserir e essas iformações que irão para os campos podem estar em um resultado select ou podem estar definidas de maneira manual usando outra cláusula    
+insert into @clientes_ativos (cod_cliente, nome_cliente, total_vendido) -- o comando insert vocÃª passa o nome dos campos que deseja inserir e essas iformaÃ§Ãµes que irÃ£o para os campos podem estar em um resultado select ou podem estar definidas de maneira manual usando outra clÃ¡usula    
 
 select a.entidade
      , a.nome
@@ -277,7 +277,7 @@ select a.entidade
 select *
   from @clientes_ativos
 
--- 3° usando a variável tipo table
+-- 3Â° usando a variÃ¡vel tipo table
 
 declare @clientes_ativos table
  ( -- especificar cada campo e quais tipos de dados cada campo correspondente
@@ -286,7 +286,7 @@ declare @clientes_ativos table
  ,total_vendido money
  )
 
-insert into @clientes_ativos (cod_cliente, nome_cliente, total_vendido) -- no comando insert, você passa o nome dos campos que deseja inserir, e essas iformações que vão para os campos, podem estar em um resultado select ou podem estar definidas de maneira manual usando outra cláusula    
+insert into @clientes_ativos (cod_cliente, nome_cliente, total_vendido) -- no comando insert, vocÃª passa o nome dos campos que deseja inserir, e essas iformaÃ§Ãµes que vÃ£o para os campos, podem estar em um resultado select ou podem estar definidas de maneira manual usando outra clÃ¡usula    
 
 select a.entidade
      , a.nome
@@ -296,7 +296,7 @@ select a.entidade
    where a.ativo = 's'
    group by a.entidade, nome
 
-select a.*    -- para essa consulta rodar é necessário rodar as anteriores que declara o insert, essa consulta não pode rodar sozinha, pois os dados não são armazenados e só funciona em execução junto com as demais informações
+select a.*    -- para essa consulta rodar Ã© necessÃ¡rio rodar as anteriores que declara o insert, essa consulta nÃ£o pode rodar sozinha, pois os dados nÃ£o sÃ£o armazenados e sÃ³ funciona em execuÃ§Ã£o junto com as demais informaÃ§Ãµes
      , b.cidade
 	 , estado
  from @clientes_ativos   a
