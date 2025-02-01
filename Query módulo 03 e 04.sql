@@ -1,4 +1,4 @@
-MÛdulo 3
+M√≥dulo 3
 
 use PBS_PROCFIT_DADOS
 
@@ -20,13 +20,13 @@ select entidade           as cod_cliente
 from entidades
 
 
--- Operadores aritmÈticos
+-- Operadores aritm√©ticos
 
 
-+ = adiÁ„o
-- = subtraÁ„o
-* = multiplicaÁ„o
-/ = divis„o
++ = adi√ß√£o
+- = subtra√ß√£o
+* = multiplica√ß√£o
+/ = divis√£o
 % = resto
 
 
@@ -56,7 +56,7 @@ select *
 where venda_analitica = 18035 
 
 
--- FunÁ„o aritmÈtica
+-- Fun√ß√£o aritm√©tica
 
 
 select venda_bruta
@@ -79,11 +79,11 @@ select produto
 from nf_faturamento_produtos
 
 
--- Operadores de concatenaÁ„o
+-- Operadores de concatena√ß√£o
 
 
--- 1∞. forma -> + operador aritmpetico de soma ou operador de concatenaÁ„o
--- Como o SGD toma a decis„o? Conforme a ordem a seguir:
+-- 1¬∞. forma -> + operador aritmpetico de soma ou operador de concatena√ß√£o
+-- Como o SGD toma a decis√£o? Conforme a ordem a seguir:
 
     From
     Where
@@ -94,22 +94,22 @@ from nf_faturamento_produtos
 
 
 -- Regra geral: olhar os tipos de dados
--- 1. Passar pelo menos um valor numÈrico
+-- 1. Passar pelo menos um valor num√©rico
 
 
-select 5 + 2   -- o resultado È 7 
-select 5 + 't' -- n„o consegue retornar e exibe um erro
-select 5 + '2' -- o resultado È 7, n˙mero + varchar, o sistema tenta transforma o varchar em n˙mero e dando certo ele soma e n„o concatena
+select 5 + 2   -- o resultado √© 7 
+select 5 + 't' -- n√£o consegue retornar e exibe um erro
+select 5 + '2' -- o resultado √© 7, n√∫mero + varchar, o sistema tenta transforma o varchar em n√∫mero e dando certo ele soma e n√£o concatena
 
 
--- 2. Caso n„o exista nenhum dado numÈrico
+-- 2. Caso n√£o exista nenhum dado num√©rico
 
 
-select 'joao' + ' da silva' -- o resultado È joao da silva, concatena
-select '5' + '2'            -- o resultado È 52, varchar + varchar ir· concatenar
+select 'joao' + ' da silva' -- o resultado √© joao da silva, concatena
+select '5' + '2'            -- o resultado √© 52, varchar + varchar ir√° concatenar
 
 
--- Na pr·tica
+-- Na pr√°tica
 
 
 select operacao_fiscal + situacao_tributaria 
@@ -123,14 +123,14 @@ select endereco
  from enderecos
 
 
--- 2∞. Forma È utilizar a funÁ„o nativa concat que È padr„o ansi
+-- 2¬∞. Forma √© utilizar a fun√ß√£o nativa concat que √© padr√£o ansi
 
  
- select concat(5,2)                 -- o resultado È 52
- select concat(5,'t')               -- o resultado È 5t
- select concat(5,'2')               -- o resultado È 52
- select concat('joao',' da silva')  -- o resultado È joao da silva
- select concat('5','2')             -- o resultado È 52
+ select concat(5,2)                 -- o resultado √© 52
+ select concat(5,'t')               -- o resultado √© 5t
+ select concat(5,'2')               -- o resultado √© 52
+ select concat('joao',' da silva')  -- o resultado √© joao da silva
+ select concat('5','2')             -- o resultado √© 52
 
 
  select endereco
@@ -141,11 +141,11 @@ select endereco
  from enderecos
 
 
--- Evitar concatenar dados usando + quando for tipo numerico + vachar pois n„o d· certo
+-- Evitar concatenar dados usando + quando for tipo numerico + vachar pois n√£o d√° certo
 
 -- Desafios aula 10
 
--- 1∞ desafio
+-- 1¬∞ desafio
 
 
 select *
@@ -159,7 +159,7 @@ select concat (entidade,nome_fantasia)
   from entidades
 
 
--- 2∞ Desafio
+-- 2¬∞ Desafio
 
 
 select *
@@ -184,7 +184,7 @@ select  produto
  order by produto asc, venda_bruta desc
 
 
- -- OrdenaÁ„o por posiÁ„o
+ -- Ordena√ß√£o por posi√ß√£o
 
 
 select produto
@@ -227,21 +227,21 @@ select entidade                                as cod_cliente
  order by data_cadastro desc
 
 
--- Operadores de comparaÁ„o
+-- Operadores de compara√ß√£o
 
  = igual a 
- <> diferente de -- esse È o padr„o ansi, usar essa forma
+ <> diferente de -- esse √© o padr√£o ansi, usar essa forma
  != diferente de -- usado em alguns banco de dados
  >  maior que
  >= maior ou igual a
  >  menor que
  >= menor ou igual a  
 
--- Filtro de informaÁıes
+-- Filtro de informa√ß√µes
 
 select *
  from entidades
-where ativo ='n' -- vamos saber quem est· inativo para recuperar esses clientes
+where ativo ='n' -- vamos saber quem est√° inativo para recuperar esses clientes
 order 
    by entidade
 
@@ -255,13 +255,13 @@ order
 
 select *
  from entidades
-where entidade > 3100 -- comeÁa a partir desse n˙mero
+where entidade > 3100 -- come√ßa a partir desse n√∫mero
 order 
    by entidade
 
 select *
  from entidades
-where entidade >= 3100 -- aqui j· inclui o 3100 na consulta
+where entidade >= 3100 -- aqui j√° inclui o 3100 na consulta
 order 
    by entidade
 
@@ -273,7 +273,7 @@ order
 
 -- Desafio aula 17
 
--- 1∞
+-- 1¬∞
 
 select especie_fiscal
 	 , documento_numero
@@ -315,7 +315,7 @@ select concat (especie_fiscal ,' ', documento_numero)  as documento
  order 
     by movimento asc
 
--- 2∞
+-- 2¬∞
 
 select concat (especie_fiscal ,' ', documento_numero)  as documento
 	 , vendedor
@@ -329,13 +329,13 @@ select concat (especie_fiscal ,' ', documento_numero)  as documento
  order 
     by quantidade desc
 
--- Operador like -> È um filtro de campos varchar(texto)
+-- Operador like -> √© um filtro de campos varchar(texto)
           -- (%) -> independente do que venha
-		  -- (_) -> substituiÁ„o, busca um texto onde n„o sei parte dele
+		  -- (_) -> substitui√ß√£o, busca um texto onde n√£o sei parte dele
 
 select cidade
   from enderecos
- where cidade like 'sao paulo' -- se usar apenas o like ele tem a funÁ„o do =
+ where cidade like 'sao paulo' -- se usar apenas o like ele tem a fun√ß√£o do =
 
 select cidade
   from enderecos
@@ -343,7 +343,7 @@ select cidade
 
 select cidade
   from enderecos
- where cidade like 'sa%' -- comando para trazer tudo que comeÁa com o texto informado (texto%)
+ where cidade like 'sa%' -- comando para trazer tudo que come√ßa com o texto informado (texto%)
 
 select cidade
   from enderecos
@@ -351,15 +351,15 @@ select cidade
 
 select cidade
   from enderecos
- where cidade like 'fo_taleza' -- _comando de substituiÁ„o, busca um texto onde n„o sei parte dele e a correspondencia exata
+ where cidade like 'fo_taleza' -- _comando de substitui√ß√£o, busca um texto onde n√£o sei parte dele e a correspondencia exata
 
  select cidade
   from enderecos
- where cidade like 's_o paulo' -- quando a palavra tem acento È possÌvel que no banco de dados tenha registros com acento e sem acento, dessa forma usa-se o _ para trazer todos os regitros
+ where cidade like 's_o paulo' -- quando a palavra tem acento √© poss√≠vel que no banco de dados tenha registros com acento e sem acento, dessa forma usa-se o _ para trazer todos os regitros
 
 select nome
   from entidades
- where nome like 'client__112%' -- È possÌvel usar dois comando juntos _ e %, o espaÁo tambÈm conta na hora de usar o _
+ where nome like 'client__112%' -- √© poss√≠vel usar dois comando juntos _ e %, o espa√ßo tamb√©m conta na hora de usar o _
 
  -- like corresnponde ao (=)
  -- not like corresponde ao (<>)
@@ -370,21 +370,21 @@ select cidade
 
 -- Desafio aula 21
 
--- 1∞
+-- 1¬∞
 select cidade
      , estado
   from enderecos
 where cidade like 's_o%'
 
--- 2∞
+-- 2¬∞
 
 select nome
      , data_cadastro
   from entidades
  where nome not like'%00%'
 
- -- and (e) -> todas as condiÁıes dever„o ser obedecidas, usado sempre que for preciso usar mais filtros, È comum usar nas consultas
- -- or  (ou)-> se pelo menos uma das condiÁıes forem obedecidas o resultado retornar·
+ -- and (e) -> todas as condi√ß√µes dever√£o ser obedecidas, usado sempre que for preciso usar mais filtros, √© comum usar nas consultas
+ -- or  (ou)-> se pelo menos uma das condi√ß√µes forem obedecidas o resultado retornar√°
 
 and
 
@@ -405,7 +405,7 @@ select *
     or entidade = 1002
     or entidade = 1003
 
--- Consultando intervalos usando in e not in, a informaÁ„o È passada como lista, condiÁıes usadas para que o cÛdigo n„o fique grande
+-- Consultando intervalos usando in e not in, a informa√ß√£o √© passada como lista, condi√ß√µes usadas para que o c√≥digo n√£o fique grande
 
 select *
   from entidades
@@ -418,7 +418,7 @@ select cidade
 
  select *
   from entidades
- where entidade not in (1001,1002,1003) -- tr·s os n˙meros exceto esses que foram informados 
+ where entidade not in (1001,1002,1003) -- tr√°s os n√∫meros exceto esses que foram informados 
 
 select cidade
      , estado
@@ -451,7 +451,7 @@ select cliente
    and produto not in (34726,34304,34394,34593)
 order by movimento 
 
--- between -> operador onde È possÌvel buscar dados entre um intervalo
+-- between -> operador onde √© poss√≠vel buscar dados entre um intervalo
 
 select entidade
   from entidades
@@ -474,16 +474,16 @@ select movimento
 	 , titulo
 	 , valor
   from titulos_receber
- where movimento >= '2020' -- tambÈm È possÌvel escrever >= '01/01/2020' ou > '31/12/2019'
+ where movimento >= '2020' -- tamb√©m √© poss√≠vel escrever >= '01/01/2020' ou > '31/12/2019'
    and entidade in (1874,2308,1520)
-   and titulo like '%/1%'--se ele conter os caracteres /1 deve trazer a informaÁ„o
-   and (valor between 150.00 and 255.23 or valor between 425.57 and 550.12) -- colocar em parÍnteses para que o sql priorize essa parte do filtro para depois executar as demais
-   -- os separadores de casas decimais no sql È o . e n„o a ,
+   and titulo like '%/1%'--se ele conter os caracteres /1 deve trazer a informa√ß√£o
+   and (valor between 150.00 and 255.23 or valor between 425.57 and 550.12) -- colocar em par√™nteses para que o sql priorize essa parte do filtro para depois executar as demais
+   -- os separadores de casas decimais no sql √© o . e n√£o a ,
 
--- InstruÁ„o top limita a quantidade de linhas buscadas no banco de dados
--- Em outros bancos a instruÁ„o usada È o limit
+-- Instru√ß√£o top limita a quantidade de linhas buscadas no banco de dados
+-- Em outros bancos a instru√ß√£o usada √© o limit
 
-select top 100 -- informaÁ„o da quantidade de linhas
+select top 100 -- informa√ß√£o da quantidade de linhas
        cliente
 	 , produto
 	 , quantidade
@@ -491,7 +491,7 @@ select top 100 -- informaÁ„o da quantidade de linhas
 from vendas_analiticas
 order by venda_bruta desc
 
-select top 100 -- informaÁ„o da quantidade de linhas
+select top 100 -- informa√ß√£o da quantidade de linhas
        cliente
 	 , produto
 	 , quantidade
@@ -499,7 +499,7 @@ select top 100 -- informaÁ„o da quantidade de linhas
 from vendas_analiticas
 order by quantidade asc
 
-select top 10 percent -- informaÁ„o do % de todas as linhas da tabela
+select top 10 percent -- informa√ß√£o do % de todas as linhas da tabela
        cliente
 	 , produto
 	 , quantidade
@@ -509,14 +509,14 @@ from vendas_analiticas
 where movimento >= '01/01/2020'
 order by quantidade asc
 
--- Retirar valores duplicados (linhas) na consulta usando o comando distinct, ele trar· valores ˙nicos
+-- Retirar valores duplicados (linhas) na consulta usando o comando distinct, ele trar√° valores √∫nicos
 
-select distinct -- tambÈm funciona se colocarmos filtros e outros comandos do sql
+select distinct -- tamb√©m funciona se colocarmos filtros e outros comandos do sql
        cidade
   from enderecos
  order by cidade
 
- -- null -> totalmente ausente de informaÁ„o
+ -- null -> totalmente ausente de informa√ß√£o
 
    
 
