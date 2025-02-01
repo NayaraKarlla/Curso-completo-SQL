@@ -1,10 +1,10 @@
-MÛdulo 8
+M√≥dulo 8
 
---> tabela fÌsica: select * from nome da tbl fÌsica
---> tabelas tempor·rias: select * from #tbltemporaria
---> tabelas tempor·rias globais: select * from ##tbltemporaria
+--> tabela f√≠sica: select * from nome da tbl f√≠sica
+--> tabelas tempor√°rias: select * from #tbltemporaria
+--> tabelas tempor√°rias globais: select * from ##tbltemporaria
 
-create table tbltemporaria -- esse comando È de uma tabela fÌsica normal
+create table tbltemporaria -- esse comando √© de uma tabela f√≠sica normal
 
 (
    cod_cliente   int
@@ -12,7 +12,7 @@ create table tbltemporaria -- esse comando È de uma tabela fÌsica normal
   ,tota_vendido  money
 )
 
-create table #tbltemporaria -- ao colocar o # antes do nome da tabela quer dizer que desejo criar uma tabela tempor·ria
+create table #tbltemporaria -- ao colocar o # antes do nome da tabela quer dizer que desejo criar uma tabela tempor√°ria
 
 (
    cod_cliente   int
@@ -23,31 +23,31 @@ create table #tbltemporaria -- ao colocar o # antes do nome da tabela quer dizer
 select * 
   from #tbltemporaria
 
--- se colocar dois ## na frente do nome da tabela, ela se tornar uma tabela tempor·ria global
+-- se colocar dois ## na frente do nome da tabela, ela se tornar uma tabela tempor√°ria global
 
 select b.entidade            as cod_cliente
      , b.nome                as nome_cliente
-	 , sum (a.venda_liquida) as total_vendido -- as colunas que tem funÁ„o de agregaÁ„o precisam ter nome, caso contr·rio o sql n„o reconhece
- into #tblclientevendas -- esse comando faz popular dados na tabela tempor·ria que criei, aqui ele analisa os tipos de dados de cada coluna e j· configura de acordo com o que est· definido nessa consulta, sendo assim, n„o È preciso preocupar com isso
+	 , sum (a.venda_liquida) as total_vendido -- as colunas que tem fun√ß√£o de agrega√ß√£o precisam ter nome, caso contr√°rio o sql n√£o reconhece
+ into #tblclientevendas -- esse comando faz popular dados na tabela tempor√°ria que criei, aqui ele analisa os tipos de dados de cada coluna e j√° configura de acordo com o que est√° definido nessa consulta, sendo assim, n√£o √© preciso preocupar com isso
  from vendas_analiticas a
  join entidades         b on a.cliente = b.entidade
  group by b.entidade
         , b.nome
 
-select *  -- aqui podemos conferir que a tablela foi criada e que j· possui dados
+select *  -- aqui podemos conferir que a tablela foi criada e que j√° possui dados
   from #tblclientevendas
 
--- Desafio 1) recuperar o total a pagar e o valor pago por ano e mÍs de cada entidade
--- Desafio 2) recuperar o total a receber e o valor recebido por ano e mÍs de cada entidade
--- Desafio 3) recuperar todas as vendas por ano e mÍs de cada entidade
+-- Desafio 1) recuperar o total a pagar e o valor pago por ano e m√™s de cada entidade
+-- Desafio 2) recuperar o total a receber e o valor recebido por ano e m√™s de cada entidade
+-- Desafio 3) recuperar todas as vendas por ano e m√™s de cada entidade
 
--- 1∞
+-- 1¬∞
 
 select *
  from titulos_pagar       a 
  join titulos_pagar_saldo b on a.titulo_pagar = b.titulo_pagar
 
--- 2∞
+-- 2¬∞
 
 select a.entidade                    as cliente
      , year(a.movimento)             as ano
@@ -60,9 +60,9 @@ select a.entidade                    as cliente
  group by year (a.movimento), month (a.movimento), a.entidade
 
 
--- Imagina que vocÍ est· em uma base de dados e por algum motivo o valor a pagar È 0, mas vocÍ n„o quer deixar a informaÁ„o zerada porque est· errada, a query abaixo corrige esse problema
+-- Imagina que voc√™ est√° em uma base de dados e por algum motivo o valor a pagar √© 0, mas voc√™ n√£o quer deixar a informa√ß√£o zerada porque est√° errada, a query abaixo corrige esse problema
 
--- 3∞
+-- 3¬∞
 
 select a.entidade                    as cliente
      , year(a.movimento)             as ano
@@ -80,7 +80,7 @@ select a.entidade                    as cliente
  join titulos_pagar_saldo b on a.titulo_pagar = b.titulo_pagar
  group by year (a.movimento), month (a.movimento), a.entidade
 
--- 4∞ 
+-- 4¬∞ 
  
 select a.entidade                    as cliente
      , year(a.movimento)             as ano
@@ -100,7 +100,7 @@ select a.entidade                    as cliente
  join titulos_pagar_saldo b on a.titulo_pagar = b.titulo_pagar
  group by year (a.movimento), month (a.movimento), a.entidade
 
--- 5∞ 
+-- 5¬∞ 
  --Desafio 1) total a pagar para o cliente
 
 select a.entidade                   as cliente
@@ -118,13 +118,13 @@ select a.entidade                   as cliente
 	        then sum(b.saldo) 
 			else sum(a.valor)
 	   end - sum (b.saldo)  as total_pago
- into #total_pagar_cliente -- essa linha foi colocada por ˙ltimo, essa query roda a consulta e cria uma tabela tempor·ria populando com essas informaÁıes
+ into #total_pagar_cliente -- essa linha foi colocada por √∫ltimo, essa query roda a consulta e cria uma tabela tempor√°ria populando com essas informa√ß√µes
  from titulos_pagar       a 
  join titulos_pagar_saldo b on a.titulo_pagar = b.titulo_pagar
  group by year (a.movimento), month (a.movimento), a.entidade
 
  -- Desafio 2) total recebido do cliente
--- 1∞ bloco
+-- 1¬∞ bloco
 
 select a.entidade                    as cliente
      , year(a.movimento)             as ano
@@ -136,7 +136,7 @@ select a.entidade                    as cliente
  join titulos_receber_saldo b on a.titulo_receber = b.titulo_receber
  group by year (a.movimento), month (a.movimento), a.entidade 
 
--- 2∞ bloco
+-- 2¬∞ bloco
 
 select a.entidade                    as cliente
      , year(a.movimento)             as ano
@@ -144,7 +144,7 @@ select a.entidade                    as cliente
 	 , sum(a.valor)                  as tota_receber
 	 , sum(b.saldo)                  as saldo_receber
      , sum(a.valor) - sum(b.saldo)   as total_recebido
- into #total_receber_cliente -- -- essa linha foi colocada por ˙ltimo, essa query roda a consulta e cria uma tabela tempor·ria populando com essas informaÁıes
+ into #total_receber_cliente -- -- essa linha foi colocada por √∫ltimo, essa query roda a consulta e cria uma tabela tempor√°ria populando com essas informa√ß√µes
  from titulos_receber       a 
  join titulos_receber_saldo b on a.titulo_receber = b.titulo_receber
  group by year (a.movimento), month (a.movimento), a.entidade
@@ -158,19 +158,19 @@ select a.cliente              as cliente
      , year(a.movimento)      as ano
      , month(a.movimento)     as mes
      , sum(a.venda_liquida)   as total_vendido
- into #total_vendido_cliente -- essa linha foi colocada por ˙ltimo, essa query roda a consulta e cria uma tabela tempor·ria populando com essas informaÁıes
+ into #total_vendido_cliente -- essa linha foi colocada por √∫ltimo, essa query roda a consulta e cria uma tabela tempor√°ria populando com essas informa√ß√µes
  from vendas_analiticas a
  group by a.cliente, year(a.movimento), month(a.movimento)
  
- -- Resultado final da query para n„o acontecer o plano cartesiano
--- 1∞
+ -- Resultado final da query para n√£o acontecer o plano cartesiano
+-- 1¬∞
 
-select * bloco -- nessa query estou pedindo para relacionar com a tabela #total_receber_cliente devendo coincidir o mesmo cliente, ano e mÍs  
+select * bloco -- nessa query estou pedindo para relacionar com a tabela #total_receber_cliente devendo coincidir o mesmo cliente, ano e m√™s  
    from #total_vendido_cliente a
    join #total_receber_cliente b on a.cliente = b.cliente
                                  and a.ano    = b.ano
 								 and a.mes    = b.mes
--- 2∞
+-- 2¬∞
 select a.*
      , b.total_receber
 	 , b.total_recebido
@@ -185,7 +185,7 @@ left join #total_pagar_cliente c on a.cliente = c.cliente
                                 and a.ano     = c.ano
 								and a.mes     = c.mes
 
--- 3∞
+-- 3¬∞
 
 select a.cliente
      , d.nome
@@ -209,22 +209,22 @@ where a.ano = 2020
   and a.mes = 9
 
 -- Recupere o total de vendas e total no estoque de cada produto
---> vendas est· na tabela vendas analÌticas
---> estoque est· na tabela de estoque_lanÁamentos
---> descriÁ„o do produto est· na tabela de produtos
+--> vendas est√° na tabela vendas anal√≠ticas
+--> estoque est√° na tabela de estoque_lan√ßamentos
+--> descri√ß√£o do produto est√° na tabela de produtos
 --> crie uma coluna virtural onde divida o estoque em 3 categorias
   -- abaixo de 50 unidades
   -- entre 50 e 1000 unidades
   -- acima de 1000 unidades
---> a consulta dever· retornar os seguintes campos
+--> a consulta dever√° retornar os seguintes campos
   -- produto
-  -- descriÁao
+  -- descri√ßao
   -- unidades vendidas
   -- unidades em estoque
   -- situacao do estoque (coluna virtual solicitada)
---> realize a consulta utilizando a subquery e depois realize a mesma consulta utilizando tabelas tempor·rias
+--> realize a consulta utilizando a subquery e depois realize a mesma consulta utilizando tabelas tempor√°rias
 
--- 1∞ total do estoque
+-- 1¬∞ total do estoque
 
 select produto
      , sum (estoque_entrada) as total_entradas
@@ -232,7 +232,7 @@ select produto
 from estoque_lancamentos
 group by produto
 
--- 2∞ 
+-- 2¬∞ 
 
 select produto
 	 , sum (estoque_entrada) - sum (estoque_saida) as saldo_estoque
@@ -247,7 +247,7 @@ select produto
  group by produto
 
  -- consulta utilizando subquery
- -- 1∞
+ -- 1¬∞
 
 select a.produto			as cod_produto
      , a.descricao			as descricao_produto
@@ -263,7 +263,7 @@ left join (select produto
 			from estoque_lancamentos
 			group by produto) c on a.produto = c.produto
 
--- 2∞ 
+-- 2¬∞ 
 
 select a.produto			as cod_produto
      , a.descricao			as descricao_produto
@@ -271,7 +271,7 @@ select a.produto			as cod_produto
 	 , c.saldo_estoque		as unidades_estoque
 	 , case when c.saldo_estoque < 50
 	        then 'abaixo de 50 unidades'
-			when c.saldo_estoque between 50 and 1000 -- tambÈm pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
+			when c.saldo_estoque between 50 and 1000 -- tamb√©m pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
 			then 'entre 50 e 1000'
 		    when c.saldo_estoque > 1000
 			then 'acima de 1000 unidades'
@@ -296,7 +296,7 @@ select a.produto							as cod_produto
 
 	 , case when isnull (c.saldo_estoque, 0) < 50
 	        then 'abaixo de 50 unidades'
-			when isnull (c.saldo_estoque, 0) between 50 and 1000 -- tambÈm pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
+			when isnull (c.saldo_estoque, 0) between 50 and 1000 -- tamb√©m pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
 			then 'entre 50 e 1000 unidades'
 		    when isnull (c.saldo_estoque, 0) > 1000
 			then 'acima de 1000 unidades'
@@ -311,7 +311,7 @@ left join (select produto
 			from estoque_lancamentos
 			group by produto) c on a.produto = c.produto
 
--- Query ajustada para trazer como retorno 'sem entrada na empresa' quando a informaÁ„o da entrada for nula, foi acrescentado o else
+-- Query ajustada para trazer como retorno 'sem entrada na empresa' quando a informa√ß√£o da entrada for nula, foi acrescentado o else
 
 select a.produto							as cod_produto
      , a.descricao							as descricao_produto
@@ -321,11 +321,11 @@ select a.produto							as cod_produto
 
 	 , case when c.saldo_estoque < 50
 	        then 'abaixo de 50 unidades'
-			when c.saldo_estoque between 50 and 1000 -- tambÈm pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
+			when c.saldo_estoque between 50 and 1000 -- tamb√©m pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
 			then 'entre 50 e 1000 unidades'
 		    when c.saldo_estoque > 1000
 			then 'acima de 1000 unidades'
-			else 'sem entrada na empresa' -- tambÈm pode ser escrita assim: 'when c.saldo_estoque is null'then 'sem entrada na empresa'
+			else 'sem entrada na empresa' -- tamb√©m pode ser escrita assim: 'when c.saldo_estoque is null'then 'sem entrada na empresa'
 		end                        as situacao_estoque
  from produtos a
  left join (select produto
@@ -337,13 +337,13 @@ left join (select produto
 			from estoque_lancamentos
 			group by produto) c on a.produto = c.produto
 
--- Tabelas tempor·rias
+-- Tabelas tempor√°rias
 
 -- Total do estoque
 
 select produto
 	 , sum (estoque_entrada) - sum (estoque_saida) as saldo_estoque
-into #produtos_estoque -- quando roda essa query de criaÁ„o da tabela pela segunda vez, o SQL mostra um erro falando que ela j· existe, a soluÁ„o È apagar a tabela para criar novamente ou deixar de usar mesmo
+into #produtos_estoque -- quando roda essa query de cria√ß√£o da tabela pela segunda vez, o SQL mostra um erro falando que ela j√° existe, a solu√ß√£o √© apagar a tabela para criar novamente ou deixar de usar mesmo
 from estoque_lancamentos
 group by produto
 
@@ -355,11 +355,11 @@ into #produtos_vendidos
  from vendas_analiticas
  group by produto
 
--- Consulta dados tabela tempor·ria
+-- Consulta dados tabela tempor√°ria
 
 select *
   from produtos           a
-  join #produtos_vendidos b on a.produto = b.produto -- sempre que estiver usando tabelas tempor·rias È necess·rio colocar o # para que o SQL localize os dados
+  join #produtos_vendidos b on a.produto = b.produto -- sempre que estiver usando tabelas tempor√°rias √© necess√°rio colocar o # para que o SQL localize os dados
 
 select a.produto            as cod_produto
      , a.descricao          as descricao_produto
@@ -368,26 +368,26 @@ select a.produto            as cod_produto
 
 	  , case when c.saldo_estoque < 50
 	        then 'abaixo de 50 unidades'
-			when c.saldo_estoque between 50 and 1000 -- tambÈm pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
+			when c.saldo_estoque between 50 and 1000 -- tamb√©m pode ser escrito da seguinte forma -- when c.saldo_estoque >= 50 and c.saldo_estoque <=1000
 			then 'entre 50 e 1000 unidades'
 		    when c.saldo_estoque > 1000
 			then 'acima de 1000 unidades'
-			else 'sem entrada na empresa' -- tambÈm pode ser escrita assim: 'when c.saldo_estoque is null'then 'sem entrada na empresa'
+			else 'sem entrada na empresa' -- tamb√©m pode ser escrita assim: 'when c.saldo_estoque is null'then 'sem entrada na empresa'
 		end                        as situacao_estoque
  from produtos                a
  left join #produtos_vendidos b on a.produto = b.produto
  left join #produtos_estoque  c on a.produto = c.produto
 
- -- O Õtalo gosta de usar tabelas tempor·rias para fazer esse tipo de consulta, quando a query È menor ele usa as subquerys
+ -- O √çtalo gosta de usar tabelas tempor√°rias para fazer esse tipo de consulta, quando a query √© menor ele usa as subquerys
 
- -- Para apagar tabelas tempor·rias, todos os dados da tabela, use o comando abaixo e jamais use o drop table em uma tabela fÌsica, certifique-se que est· usando a tabela tempor·ria antes de dar o comando drop table
+ -- Para apagar tabelas tempor√°rias, todos os dados da tabela, use o comando abaixo e jamais use o drop table em uma tabela f√≠sica, certifique-se que est√° usando a tabela tempor√°ria antes de dar o comando drop table
 
  drop table #produtos_estoque
  drop table #produtos_vendidos
 
 
--- Para criaÁ„o de tabela tem duas formas, atravÈs do comando create table e into #nome da tabela
--- Quando estamos criando uma tabela no banco de dados, ao colocar o drop no final da query d· um erro dizendo que j· existe a tabela tempor·ria, e para resolver esse problema foi criado outra soluÁ„o
+-- Para cria√ß√£o de tabela tem duas formas, atrav√©s do comando create table e into #nome da tabela
+-- Quando estamos criando uma tabela no banco de dados, ao colocar o drop no final da query d√° um erro dizendo que j√° existe a tabela tempor√°ria, e para resolver esse problema foi criado outra solu√ß√£o
 
 create table #temp_01 (id int, nome varchar (80)) -- 1
 
@@ -402,13 +402,13 @@ select *
 drop table #temp_01
 
 --------
-select object_id ('entidades')        -- funÁ„o object_id () retorna o cÛdigo de qualquer tabela dentro do banco de dados
-select object_id ('curso_sql')        -- È uma tabela que n„o existe, ou seja, ir· retorna null
-select object_id ('tempdb..#temp_01') -- o que est· dizendo aqui () È: quero consultar essa tabela #temp_01 no banco tempdb e n„o mais no banco que est· informando em cima que È o PBS_PROCFIT_DADOS
+select object_id ('entidades')        -- fun√ß√£o object_id () retorna o c√≥digo de qualquer tabela dentro do banco de dados
+select object_id ('curso_sql')        -- √© uma tabela que n√£o existe, ou seja, ir√° retorna null
+select object_id ('tempdb..#temp_01') -- o que est√° dizendo aqui () √©: quero consultar essa tabela #temp_01 no banco tempdb e n√£o mais no banco que est√° informando em cima que √© o PBS_PROCFIT_DADOS
 
--- essa È a outra soluÁ„o
+-- essa √© a outra solu√ß√£o
 
-if object_id ('tempdb..#temp_01') is not null drop table #temp_01 -- o comando est· dizendo que se existir objeto dentro do 'tempdb..#temp_01', ou seja, n„o retornar nulo, vai apagar a #temp_01 e os seguintes comandos s„o executados na sequÍncia
+if object_id ('tempdb..#temp_01') is not null drop table #temp_01 -- o comando est√° dizendo que se existir objeto dentro do 'tempdb..#temp_01', ou seja, n√£o retornar nulo, vai apagar a #temp_01 e os seguintes comandos s√£o executados na sequ√™ncia
 
 create table #temp_01 (id int, nome varchar (80))
 
@@ -421,9 +421,9 @@ select *
    from #temp_01
 
 ----------------------
--- Nas CTE's os dados n„o ficam armazenados, pois s„o usados em tempo de execuÁ„o e tem uma ordem, estrutura para serem criadas: 1∞ cria a cte's e 2∞ utiliza a cte's, o select, ou seja, um ˙nico comando
--- Pode haver v·rias ctes separadas por vÌrgula, o importante È serem criadas em sequÍncia e depois consulta a ctes e nesse caso sÛ pode ter um comando de instruÁ„o select.
--- As ctes sempre comeÁam a ser criadas com "with"
+-- Nas CTE's os dados n√£o ficam armazenados, pois s√£o usados em tempo de execu√ß√£o e tem uma ordem, estrutura para serem criadas: 1¬∞ cria a cte's e 2¬∞ utiliza a cte's, o select, ou seja, um √∫nico comando
+-- Pode haver v√°rias ctes separadas por v√≠rgula, o importante √© serem criadas em sequ√™ncia e depois consulta a ctes e nesse caso s√≥ pode ter um comando de instru√ß√£o select.
+-- As ctes sempre come√ßam a ser criadas com "with"
 
 with cte_produtos_estoque as (
 
@@ -458,5 +458,5 @@ select a.produto            as cod_produto
  left join cte_produtos_vendidos b on a.produto = b.produto
  left join cte_produtos_estoque  c on a.produto = c.produto
 
- -- Conclus„o: as tabelas tempor·rias rodam mais r·pido, s„o mais perform·ticas, pode ser criado Ìndices para elas. Existem limitaÁıes para tabelas tempor·rias, se quer usar em uma view n„o conseguir·, elas n„o s„o permitidas em views e funÁıes, isso È um ponto muito negativo. 
- -- J· as CTEs e as subqueries tambÈm podem ser usadas em views, em qualquer objeto dentro do seu banco de dados.
+ -- Conclus√£o: as tabelas tempor√°rias rodam mais r√°pido, s√£o mais perform√°ticas, pode ser criado √≠ndices para elas. Existem limita√ß√µes para tabelas tempor√°rias, se quer usar em uma view n√£o conseguir√°, elas n√£o s√£o permitidas em views e fun√ß√µes, isso √© um ponto muito negativo. 
+ -- J√° as CTEs e as subqueries tamb√©m podem ser usadas em views, em qualquer objeto dentro do seu banco de dados.
