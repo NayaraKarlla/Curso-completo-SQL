@@ -162,7 +162,7 @@ from clientes
 -- Forma normal
 
 -- 1.Ter uma chave primária ou pk (abreviação)
--- 2.Valores atómicos (valores indivisiveis, que é uma informação que pode ficar em uma única coluna)
+-- 2.Valores atómicos (valores indivisíveis, que é uma informação que pode ficar em uma única coluna)
 -- 3.Não ter campos multivalorados que são duas informações na mesma colunca
 
 drop table clientes
