@@ -1,12 +1,12 @@
-Módulo 6
+MÃ³dulo 6
 
 -- Union all: uni todos os resultados de duas ou mais consultas
 
 -- Pontos principais:
--- 1) Todas as consultas devem ter o mesmo número de colunas
--- 2) Todos os tipos de dados devem ser compatíveis, exemplo: coluna data compatível com outra coluna de data
+-- 1) Todas as consultas devem ter o mesmo nÃºmero de colunas
+-- 2) Todos os tipos de dados devem ser compatÃ­veis, exemplo: coluna data compatÃ­vel com outra coluna de data
 -- 3) Os alias das colunas ficam no primeiro comando select ou primeira consulta
--- 4) Sempre o order by fica no último comando select
+-- 4) Sempre o order by fica no Ãºltimo comando select
 -- 5) Esse comando junta todos os resultados das tabelas inclusive os repetidos
 
 select entidade as cod_cliente, nome, inscricao_federal
@@ -17,7 +17,7 @@ union all
 select entidade, nome, inscricao_federal
 from pessoas_juridicas
 
--- Pode organizar dessa forma também caso perceba que é melhor
+-- Pode organizar dessa forma tambÃ©m caso perceba que Ã© melhor
 
 select entidade          as cod_cliente
      , nome              as nome_cliente
@@ -32,7 +32,7 @@ select entidade
 from pessoas_juridicas
 
 --------------
--- Pode incluir uma coluna de identificação para saber de qual consulta corresponde o dado
+-- Pode incluir uma coluna de identificaÃ§Ã£o para saber de qual consulta corresponde o dado
 
 
 select 'pf'               as tipo_cliente
@@ -55,7 +55,7 @@ select 'pf'               as tipo_cliente
       , entidade          as cod_cliente
       , nome              as nome_cliente
 	  , inscricao_federal as inscricao_federal
-	  , data_cadastro     -- aqui foi incluida por último essa coluna, mesma que nas demais consultas não tenha a mesma, é importante colocar null para ter correspondência e trazer os dados
+	  , data_cadastro     -- aqui foi incluida por Ãºltimo essa coluna, mesma que nas demais consultas nÃ£o tenha a mesma, Ã© importante colocar null para ter correspondÃªncia e trazer os dados
 from pessoas_fisicas
 
 union all
@@ -64,7 +64,7 @@ select 'pj'
       , entidade
       , nome
 	  , inscricao_federal
-	  , null -- incluído esse valor fixo para ter correspondência e trazer os dados cadastrado da coluna, que será unida nessa consulta 
+	  , null -- incluÃ­do esse valor fixo para ter correspondÃªncia e trazer os dados cadastrado da coluna, que serÃ¡ unida nessa consulta 
 from pessoas_juridicas
 
 -------------------------
@@ -93,7 +93,7 @@ order by entidade
 
 -----------------
 
--- Union: uni o resultado distinto de duas consultas ou mais, tira os valores duplicados, é como se fizesse um select e depois um distinct. Essa é a única diferença, remove as linhas duplicadas. É a mesma função do excel de remover dados duplicados.
+-- Union: uni o resultado distinto de duas consultas ou mais, tira os valores duplicados, Ã© como se fizesse um select e depois um distinct. Essa Ã© a Ãºnica diferenÃ§a, remove as linhas duplicadas. Ã‰ a mesma funÃ§Ã£o do excel de remover dados duplicados.
 
 select entidade           as cod_cliente
       , nome              as nome_cliente
@@ -111,8 +111,8 @@ from pessoas_juridicas
 
 --------------------
 
--- Except: serve para buscar registros que aparecem na consulta A mas não aparecem na consulta B, se a informação existe na consulta A e B, ele vai remover as duas informações por completo, só trará o que é diferente nas consultas, ou seja, informações que não se repetem em ambas consultas.
--- Exemplo: existe a informação 1 na consulta A e 1 na consulta B, ele vai remover as duas informações.
+-- Except: serve para buscar registros que aparecem na consulta A mas nÃ£o aparecem na consulta B, se a informaÃ§Ã£o existe na consulta A e B, ele vai remover as duas informaÃ§Ãµes por completo, sÃ³ trarÃ¡ o que Ã© diferente nas consultas, ou seja, informaÃ§Ãµes que nÃ£o se repetem em ambas consultas.
+-- Exemplo: existe a informaÃ§Ã£o 1 na consulta A e 1 na consulta B, ele vai remover as duas informaÃ§Ãµes.
 
 select b.entidade
      , b.nome 
@@ -133,7 +133,7 @@ group by b.entidade, b.nome, b.inscricao_federal
 order by entidade
 ------------------
 
--- Intersect: Pega as informações em comum entre duas consultas ou mais. Esse comando é como se fosse o Inner Join, porém aqui ele se aplica as consultas e não de tabelas.
+-- Intersect: Pega as informaÃ§Ãµes em comum entre duas consultas ou mais. Esse comando Ã© como se fosse o Inner Join, porÃ©m aqui ele se aplica as consultas e nÃ£o de tabelas.
 
 select b.entidade
      , b.nome 
@@ -153,7 +153,7 @@ group by b.entidade, b.nome, b.inscricao_federal
 
 order by entidade
 
--- Os comandos abaixo são para validar se de fato a consulta anterior está retornando apenas o que tem intercecção, ou seja, informações em comum. 
+-- Os comandos abaixo sÃ£o para validar se de fato a consulta anterior estÃ¡ retornando apenas o que tem intercecÃ§Ã£o, ou seja, informaÃ§Ãµes em comum. 
 
 select distinct entidade
 from titulos_pagar
